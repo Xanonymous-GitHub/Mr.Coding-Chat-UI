@@ -23,9 +23,11 @@ export default class App extends Vue {
 
   protected mounted() {
     this.detectTheme();
-    // window
-    //   .matchMedia("(prefers-color-scheme: dark)")
-    //   .addEventListener(this.detectTheme());
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", () => {
+        this.detectTheme();
+      });
   }
 
   private detectTheme() {
