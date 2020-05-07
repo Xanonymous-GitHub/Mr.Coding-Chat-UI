@@ -1,12 +1,7 @@
 <template>
-  <v-bottom-navigation
-    :dark="isDarkMode"
-    class="v-bottom-navigation--fixed pa-3"
-    v-model="bottomNav"
-    fixed
-  >
-    <MsgInput />
-  </v-bottom-navigation>
+  <v-app-bar :dark="isDarkMode">
+    <MsgInput id="msg-input" />
+  </v-app-bar>
 </template>
 
 <script lang="ts">

@@ -1,3 +1,6 @@
-#msg-input{
-
+#msg-input {
+  & .up-half{
+    transform: translateY(37.5%);
+    bottom: 3vh;
+  }
 }

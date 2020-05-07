@@ -1,14 +1,9 @@
 <template>
-  <div id="app">
-    <v-app id="inspire">
-      <router-view />
-    </v-app>
-  </div>
+  <router-view />
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import appModule from "@/store/modules/app";
-import "@/assets/scss/app.scss";
 
 @Component
 export default class App extends Vue {

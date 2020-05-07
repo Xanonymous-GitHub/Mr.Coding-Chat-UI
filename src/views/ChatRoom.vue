@@ -1,7 +1,7 @@
 <template>
-  <div class="" id="chat-room">
-    <BottomController :isDarkMode="isDarkMode" />
-  </div>
+  <v-app id="chat-room" class="flex-column">
+    <BottomController :isDarkMode="isDarkMode" class="pa-3 bottom fixed" />
+  </v-app>
 </template>
 
 <script lang="ts">
