@@ -6,7 +6,7 @@ import {
   VuexModule,
 } from "vuex-module-decorators";
 
-@Module({dynamic: true, store, name: "app"})
+@Module({ dynamic: true, store, name: "app" })
 class AppModule extends VuexModule {
   private themeMode = "light";
 
