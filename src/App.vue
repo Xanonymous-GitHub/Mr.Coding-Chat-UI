@@ -1,32 +1,47 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <v-app id="inspire">
+      <router-view />
+    </v-app>
   </div>
 </template>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+import appModule from "@/store/modules/app";
+import "@/assets/scss/app.scss";
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+@Component
+export default class App extends Vue {
+  protected detectSystemTheme(): string {
+    if (!window.matchMedia) return "light";
+    const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches;
+    return isDarkMode ? "dark" : "light";
+  }
 
-#nav {
-  padding: 30px;
+  protected detectLocalStorageTheme(): string {
+    const availableValues = ["auto", "light", "dark"];
+    let colorSchema = `${localStorage.getItem("colorSchema")}`;
+    if (!availableValues.includes(colorSchema)) colorSchema = "auto";
+    return colorSchema;
+  }
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  protected mounted() {
+    this.detectTheme();
+    // window
+    //   .matchMedia("(prefers-color-scheme: dark)")
+    //   .addEventListener(this.detectTheme());
+  }
 
-    &.router-link-exact-active {
-      color: #42b983;
+  private detectTheme() {
+    let theme: string;
+    const localStorageTheme = this.detectLocalStorageTheme();
+    if (localStorageTheme === "auto") {
+      theme = this.detectSystemTheme();
+    } else {
+      theme = localStorageTheme;
     }
+    appModule.SET_THEME_MODE(theme);
   }
 }
-</style>
+</script>
