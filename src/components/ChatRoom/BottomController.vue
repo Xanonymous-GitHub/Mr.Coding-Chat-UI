@@ -15,6 +15,5 @@ import MsgInput from "@/components/ChatRoom/MsgInput.vue";
 export default class BottomController extends Vue {
   @Prop({ required: false })
   private isDarkMode!: boolean;
-  private bottomNav = "recent";
 }
 </script>
